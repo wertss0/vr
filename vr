@@ -1,22 +1,3 @@
---[[
-	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
-]]
---[[
-re-released by discord.gg/dogpower & modified by https://discord.gg/Hbq3TgAJbB
-
-       ____________         __             ____________             ___  ___     ____________
-      / __________/        / /            / __________ \           /  / /  /    /  _______  /
-     / /                  / /            / /          \ \         /  / /  /    /  /      / /
-    / /                  / /            / /            \ \       /  / /  /    /  /______/ /
-   / /                  / /            / /              \ \     /  / /  /    /      _____/
-  / /                  / /             \ \              / /    /  / /  /    /       \
- / /                  / /               \ \            / /    /  / /  /    /    /\   \
-/ /____________      / /___________      \ \__________/ /    /   \/  /    /    /  \   \
-\_____________/     /_____________/       \____________/     \______/    /____/    \___\
-----------------------------------------------------------------------------------------
-
-]]
-
 --[[---------Settings---------]]--
 local bodyTransparency = 0 --Change the transparency of your character (0 - 1)
 local bodyVelocity = {-17.7, 0, -17.7} --Change your body parts velocity. First number value is the X value. Second number value is the Y value. Third number value is the Z value.
