@@ -2816,27 +2816,40 @@ HeadsitTarget_Button.MouseButton1Click:Connect(function()
 	if TargetedPlayer ~= nil then
 		ChangeToggleColor(HeadsitTarget_Button)
 		if HeadsitTarget_Button.Ticket_Asset.ImageColor3 == Color3.fromRGB(0,255,0) then
+			local angle = 0
 			repeat
 				pcall(function()
 					if not GetRoot(plr):FindFirstChild("BreakVelocity") then
-						pcall(function()
-							local TempV = Velocity_Asset:Clone()
-							TempV.Parent = GetRoot(plr)
-						end)
+						local TempV = Velocity_Asset:Clone()
+						TempV.Parent = GetRoot(plr)
 					end
-					local targethead = Players[TargetedPlayer].Character.Head
-					plr.Character.Humanoid.Sit = true
-					GetRoot(plr).CFrame = targethead.CFrame * CFrame.new(0,2,0)
-					GetRoot(plr).Velocity = Vector3.new(0,0,0)
+
+					local targetHead = Players[TargetedPlayer].Character:FindFirstChild("Head")
+					if targetHead then
+						plr.Character.Humanoid.Sit = true
+						
+						-- Calculate orbit position
+						local radius = 3
+						local orbitHeight = 2
+						angle += 0.05 -- speed of orbit
+						local offset = Vector3.new(math.cos(angle) * radius, orbitHeight, math.sin(angle) * radius)
+						
+						-- Move the player
+						local newPosition = targetHead.Position + offset
+						GetRoot(plr).CFrame = CFrame.new(newPosition, targetHead.Position)
+						GetRoot(plr).Velocity = Vector3.zero
+					end
 				end)
 				task.wait()
 			until HeadsitTarget_Button.Ticket_Asset.ImageColor3 == Color3.fromRGB(255,0,0)
+
 			if GetRoot(plr):FindFirstChild("BreakVelocity") then
 				GetRoot(plr).BreakVelocity:Destroy()
 			end
 		end
 	end
 end)
+
 
 StandTarget_Button.MouseButton1Click:Connect(function()
 	if TargetedPlayer ~= nil then
