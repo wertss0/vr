@@ -2818,15 +2818,6 @@ HeadsitTarget_Button.MouseButton1Click:Connect(function()
 		if HeadsitTarget_Button.Ticket_Asset.ImageColor3 == Color3.fromRGB(0,255,0) then
 			local angle = 0
 
-			-- Load and play orbit animation
-			local animId = "rbxassetid://YOUR_ANIMATION_ID_HERE" -- Replace this with your animation ID
-			local humanoid = plr.Character:FindFirstChildOfClass("Humanoid")
-			local animation = Instance.new("Animation")
-			animation.AnimationId = animId
-			local track = humanoid:LoadAnimation(animation)
-			track.Looped = true
-			track:Play()
-
 			repeat
 				pcall(function()
 					if not GetRoot(plr):FindFirstChild("BreakVelocity") then
@@ -2858,10 +2849,6 @@ HeadsitTarget_Button.MouseButton1Click:Connect(function()
 
 			if GetRoot(plr):FindFirstChild("BreakVelocity") then
 				GetRoot(plr).BreakVelocity:Destroy()
-			end
-
-			if track then
-				track:Stop()
 			end
 		end
 	end
