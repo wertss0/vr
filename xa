@@ -2817,6 +2817,16 @@ HeadsitTarget_Button.MouseButton1Click:Connect(function()
 		ChangeToggleColor(HeadsitTarget_Button)
 		if HeadsitTarget_Button.Ticket_Asset.ImageColor3 == Color3.fromRGB(0,255,0) then
 			local angle = 0
+
+			-- Load and play orbit animation
+			local animId = "rbxassetid://YOUR_ANIMATION_ID_HERE" -- Replace this with your animation ID
+			local humanoid = plr.Character:FindFirstChildOfClass("Humanoid")
+			local animation = Instance.new("Animation")
+			animation.AnimationId = animId
+			local track = humanoid:LoadAnimation(animation)
+			track.Looped = true
+			track:Play()
+
 			repeat
 				pcall(function()
 					if not GetRoot(plr):FindFirstChild("BreakVelocity") then
@@ -2826,17 +2836,20 @@ HeadsitTarget_Button.MouseButton1Click:Connect(function()
 
 					local targetHead = Players[TargetedPlayer].Character:FindFirstChild("Head")
 					if targetHead then
-						plr.Character.Humanoid.Sit = true
-						
-						-- Calculate orbit position
 						local radius = 3
 						local orbitHeight = 2
-						angle += 0.05 -- speed of orbit
+						angle += 0.05
 						local offset = Vector3.new(math.cos(angle) * radius, orbitHeight, math.sin(angle) * radius)
-						
-						-- Move the player
+
 						local newPosition = targetHead.Position + offset
-						GetRoot(plr).CFrame = CFrame.new(newPosition, targetHead.Position)
+
+						-- Maintain current character rotation (do not face the target)
+						local currentRotation = GetRoot(plr).Rotation
+						GetRoot(plr).CFrame = CFrame.new(newPosition) * CFrame.Angles(
+							math.rad(currentRotation.X),
+							math.rad(currentRotation.Y),
+							math.rad(currentRotation.Z)
+						)
 						GetRoot(plr).Velocity = Vector3.zero
 					end
 				end)
@@ -2846,10 +2859,13 @@ HeadsitTarget_Button.MouseButton1Click:Connect(function()
 			if GetRoot(plr):FindFirstChild("BreakVelocity") then
 				GetRoot(plr).BreakVelocity:Destroy()
 			end
+
+			if track then
+				track:Stop()
+			end
 		end
 	end
 end)
-
 
 StandTarget_Button.MouseButton1Click:Connect(function()
 	if TargetedPlayer ~= nil then
