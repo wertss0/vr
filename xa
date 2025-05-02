@@ -2842,8 +2842,6 @@ StandTarget_Button.MouseButton1Click:Connect(function()
 	if TargetedPlayer ~= nil then
 		ChangeToggleColor(StandTarget_Button)
 		if StandTarget_Button.Ticket_Asset.ImageColor3 == Color3.fromRGB(0,255,0) then
-			PlayAnim(13823324057,4,0)
-			repeat
 				pcall(function()
 					if not GetRoot(plr):FindFirstChild("BreakVelocity") then
 						pcall(function()
