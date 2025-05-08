@@ -17,7 +17,7 @@ end
 
 local our_identity = getthreadidentity and getthreadidentity() or 8;
 local debug_enabled = true;
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/iopsec/bloxburg-grinders/main/ui.lua"))();
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/wertss0/vr/refs/heads/main/b2.lua"))();
 
 -- utils
 local utils = {} do
