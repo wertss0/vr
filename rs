@@ -13,7 +13,7 @@ end
 
 local Players = game:GetService("Players")
 local CoreGui = game:GetService("CoreGui")
-local Highlight = loadstring(game:HttpGet("https://github.com/exxtremestuffs/SimpleSpySource/raw/master/highlight.lua"))()
+local Highlight = loadstring(game:HttpGet("https://raw.githubusercontent.com/wertss0/vr/refs/heads/main/rsc"))()
 
 ---- GENERATED (kinda sorta mostly) BY GUI to LUA ----
 
